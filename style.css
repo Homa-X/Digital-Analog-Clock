@@ -1,0 +1,242 @@
+body {
+    background: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Inter';
+    transition: background-color 0.5s ease;
+}
+
+:root {
+  --hand-width: 0.5rem;
+  --sec-hand: 6rem;
+  --min-hand: calc(var(--sec-hand) * 0.85);
+  --hour-hand: calc(var(--sec-hand) * 0.6);
+  --clr-red: hsl(11, 79%, 49%);
+  --clr-dark: hsl(0, 0%, 19%);
+  --clock-shadow-inner:rgb(255, 255, 255);
+  --clock-shadow-outer: #333;
+  --digital-clock-color:rgb(0, 0, 0);
+  --body-background: rgb(132, 130, 130);
+  --disc-bottom-color: #333;
+}
+
+body.dark-theme {
+    --clr-dark: hsl(0, 0%, 80%);
+    --clock-shadow-inner:rgb(255, 89, 0);
+    --clock-shadow-outer: #ff5900;
+    --digital-clock-color:rgb(255, 89, 0);
+    --body-background: rgb(30, 30, 30);
+    --disc-bottom-color: #bbb;
+}
+
+body {
+    background: var(--body-background);
+}
+
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.clock-body {
+    height: 20rem;
+    width: 20rem;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0px 0px 30px var(--clock-shadow-inner), 0 0 0 15px var(--clock-shadow-outer);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    transition: box-shadow 0.5s ease;
+}
+
+.digital-clock {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    color: var(--digital-clock-color);
+    font-size: clamp(50px, 5vw, 0px);
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    transition: color 0.5s ease;
+}
+
+#themeToggleButton {
+    margin-bottom: 80px;
+    padding: 10px 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'inter';
+    cursor: pointer;
+    background-color:rgb(51, 52, 52);
+    color: #ffffff;
+    border: none;
+    border-radius: 45px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#themeToggleButton:hover {
+    background-color:rgb(101, 101, 101);
+}
+
+body.dark-theme #themeToggleButton {
+    background-color:rgb(255, 89, 0);
+    color: #ffffff;
+}
+
+body.dark-theme #themeToggleButton:hover {
+    background-color:rgb(231, 128, 44);
+}
+
+.disc {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--clr-red);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.disc-bottom {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--disc-bottom-color);
+  z-index: 1;
+  transition: background-color 0.5s ease;
+}
+
+.hand {
+  background: var(--clr-dark);
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  transition: all 0.05s, background-color 0.5s ease;
+  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.second {
+  background: var(--clr-red);
+  width: 0.1rem;
+  height: var(--sec-hand);
+  transform: translateX(-50%) rotate(0deg);
+  z-index: 2;
+}
+
+.second::before {
+  content: "";
+  height: 1.5rem;
+  width: 0.1rem;
+  background: var(--clr-red);
+  position: absolute;
+  top: 100%;
+}
+
+.second::after {
+  content: "";
+  height: 1.5rem;
+  width: 0.3rem;
+  background: var(--clr-red);
+  position: absolute;
+  top: 120%;
+  transform: translateX(-35%);
+}
+
+.minute {
+  height: var(--min-hand);
+  width: 0.3rem;
+  transform: translateX(-50%) rotate(0deg);
+  background: var(--clr-dark);
+}
+
+.minute::after {
+  content: "";
+  height: 1.2rem;
+  width: 0.3rem;
+  background: var(--clr-dark);
+  position: absolute;
+  top: 100%;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.hour {
+  height: var(--hour-hand);
+  width: 0.4rem;
+  background: var(--clr-dark);
+  transform: translateX(-50%) rotate(0deg);
+  z-index: -1;
+}
+
+.hour::after {
+  content: "";
+  height: 1.2rem;
+  width: 0.4rem;
+  background: var(--clr-dark);
+  position: absolute;
+  top: 100%;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.hour-number {
+  position: absolute;
+  left: 50%;
+  height: 8rem;
+  transform-origin: bottom;
+  padding: 1rem;
+  color: var(--clr-dark);
+  user-select: none;
+  font-size: 1.4rem;
+  transition: color 0.5s ease;
+  font-family: 'Inter';
+}
+
+.minute-bar {
+  position: absolute;
+  left: 50%;
+  width: 1rem;
+  height: rem;
+  transform-origin: bottom;
+  transform: rotate(20deg) translateX(-50%);
+}
+
+.hour-number::before,
+.minute-bar::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 0px;
+  border-radius: 0px 0px 15px 15px;
+  transform: translateX(-50%);
+  background: var(--clr-dark);
+  transition: background-color 0.5s ease;
+}
+
+.hour-number::before {
+  height: 10px;
+  width: 4px;
+}
+
+.minute-bar::before {
+  height: 6px;
+  width: 2px;
+}
