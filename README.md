@@ -7,8 +7,8 @@ Check out the **live version** 👉 [Click here](https://homa-x.github.io/Digita
 
 ## 📸 Screenshot
 
-![Screenshot](.Screenshots/DarkMode.png)
-![Screenshot](.Screenshots/LightMode.png)
+![DarkMode](.Screenshots/DarkMode.PNG)
+![LightMode](.Screenshots/LightMode.PNG)
 
 
 
