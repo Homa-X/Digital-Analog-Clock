@@ -5,7 +5,7 @@ Check out the **live version** 👉 [Click here](https://homa-x.github.io/Digita
 
 ---
 
-## 📸 Screenshot
+## 📸 Screenshots
 ## 🌚 DarkMode
 ![DarkMode](Screenshots/DarkMode.PNG)
 ## 🌞 LightMode
